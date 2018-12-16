@@ -5,7 +5,7 @@ const Video = require("../models/video");
 
 const db = "mongodb://usermustafa:mustafa123@ds135724.mlab.com:35724/videoplayer";
 mongoose.Promise = global.Promise;
-mongoose.connect(db, function (err) {
+mongoose.connect(db, { useNewUrlParser: true }, function (err) {
    if(err) {
        console.log("Err!", err);
    }
@@ -34,8 +34,8 @@ router.get('/videos/:id', function(req, res) {
    });
 });
 
-router.post('video', function (req, res) {
-    newVideo = new Video();
+router.post('/video', function (req, res) {
+    var newVideo = new Video();
     newVideo.title = req.body.title;
     newVideo.url = req.body.url;
     newVideo.description = req.body.description;
@@ -46,7 +46,7 @@ router.post('video', function (req, res) {
         }else {
             res.json(insertedVideo);
         }
-    })
-})
+    });
+});
 
 module.exports = router;
