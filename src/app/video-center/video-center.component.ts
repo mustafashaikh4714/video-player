@@ -25,7 +25,6 @@ private hiddenNewVideo:boolean = true;
   onSelectVideo(vid:any) {
    this.selectedVideo = vid;
    this.hiddenNewVideo = true;
-   console.log(this.selectedVideo);
   }
 
   onSubmitAddVideo(video:Video) {
@@ -40,5 +39,24 @@ private hiddenNewVideo:boolean = true;
 
   newVideo() {
     this.hiddenNewVideo = false;
+  }
+
+  onUpdateVideo(video:any) {
+  this._videoService.updateVideo(video)
+  .subscribe(resUpdatedVideo => video = resUpdatedVideo);
+  this.selectedVideo = null;
+  }
+
+  onDeleteVideo(video:any) {
+    let videoArray = this.videos;
+   this._videoService.deleteVideo(video)
+   .subscribe(resDeletedVideo => {
+     for(let i = 0; i < videoArray.length; i++) {
+       if(videoArray[i]._id === video.id) {
+         videoArray.splice(i, 1);
+       }
+     }
+   });
+   this.selectedVideo = null;
   }
 }
