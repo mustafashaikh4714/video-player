@@ -62,7 +62,18 @@ router.put('/video/:id', function (req, res) {
      } else {
          res.json(updatedVideo);
      }
-  })
-})
+  });
+});
+
+router.delete('/video/:id', function (req, res) {
+    console.log("deleting a video");
+    Video.findByIdAndRemove(req.params.id, function (err, deletedVideo) {
+        if(err) {
+            console.log("error deleting video")
+        }else {
+            res.json(deletedVideo);
+        }
+    });
+});
 
 module.exports = router;
