@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { VideoListComponent } from './video-list/video-list.component';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { VideoService } from './video.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [VideoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
