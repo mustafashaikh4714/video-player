@@ -5,7 +5,7 @@ const Video = require("../models/video");
 
 const db = "mongodb://usermustafa:mustafa123@ds135724.mlab.com:35724/videoplayer";
 mongoose.Promise = global.Promise;
-mongoose.connect(db, { useNewUrlParser: true }, function (err) {
+mongoose.connect(db, function (err) {
    if(err) {
        console.log("Err!", err);
    }
