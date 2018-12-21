@@ -1,24 +1,22 @@
-require('./server/config');
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+require("./server/config")
+const express = require("express")
+const bodyParser = require("body-parser")
+const path = require("path")
 
-const api = require("./server/routes/api");
+const api = require("./server/routes/api")
 
-const port = process.env.PORT;
-const app = express();
+const PORT = process.env.PORT || 3001
+const app = express()
 
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, "public")))
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
-app.use("/api", api);
+app.use("/api", api)
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-});
-
-app.listen(port, () => {
-    console.log("server is up on port", port);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"))
 })
+
+app.listen(PORT, () => console.log(`Server is started on ${PORT}`))
