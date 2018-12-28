@@ -4,15 +4,12 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 require("./server/config")
-const express = require("express")
-const bodyParser = require("body-parser")
-const path = require("path")
 
 
 const api = require("./server/routes/api")
 
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 const app = express();
 
 app.use(express.static(path.join(__dirname, "public")))
